@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<h1>Edit user</h1>
+<form th:action="@{/admin/saveUpdatedUser}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="userId">UserId</label>
+                <input readonly type="number" th:field="*{id}" id="userId" placeholder="UserId">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="name">Enter name</label>
+                <input type="text" th:field="*{name}" id="name" required/>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="age">Enter age</label>
+                <input type="number" th:field="*{age}" id="age">
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="email">Enter email</label>
+                <input type="text" th:field="*{email}" id="email" required/>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="password">Enter password</label>
+                <input type="text" th:field="*{password}" id="password" required/>
+            </td>
+        </tr>
+        <br/>
+        <label>Select role:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:value="${role.getId()}"
+                   th:text="${role.getName()}"
+                   th:field="*{roles}"
+            />
+        </label>
+        <br>
+        <br>
+        <tr>
+            <td>
+                <input type="submit" class="buttonEdit" value="Edit user"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
